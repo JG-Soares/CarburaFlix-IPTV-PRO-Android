@@ -1,0 +1,71 @@
+CARBURAFLIX IPTV PRO - APP ANDROID (celular, tablet, TV Box e Android TV)
+==========================================================================
+
+Este e o projeto do app. O arquivo .apk e gerado a partir dele (passo abaixo).
+O app funciona sozinho no aparelho: NAO precisa do PC nem do servidor Node.
+Ele ja traz o "servidor" por dentro (baixa a lista, libera o video sem bloqueio
+de CORS, monta o guia EPG), com o mesmo visual e recursos da versao do PC.
+
+-------------------------------------------------
+JEITO 1 - GERAR O APK PELA INTERNET (sem instalar nada no PC)
+-------------------------------------------------
+1. Crie uma conta gratis em https://github.com
+2. Crie um repositorio novo (botao "New"), pode ser privado.
+3. Envie TODO o conteudo desta pasta (inclusive a pasta oculta .github):
+   "Add file" > "Upload files" e arraste os arquivos e pastas.
+   Se a pasta .github nao aparecer para arrastar, use "Add file" > "Create new file"
+   com o nome  .github/workflows/build-apk.yml  e cole o conteudo do arquivo.
+4. Abra a aba "Actions", escolha "Gerar APK" e clique em "Run workflow".
+5. Em 3 a 6 minutos termina. Abra a execucao e baixe "CarburaFlix-IPTV-PRO-apk"
+   (um ZIP com o app-debug.apk dentro).
+
+-------------------------------------------------
+JEITO 2 - GERAR NO PC COM O ANDROID STUDIO
+-------------------------------------------------
+1. Instale o Android Studio (https://developer.android.com/studio).
+2. File > Open > escolha esta pasta e aguarde o "Gradle sync" terminar.
+3. Menu Build > Build Bundle(s) / APK(s) > Build APK(s).
+4. O arquivo fica em  app/build/outputs/apk/debug/app-debug.apk
+
+-------------------------------------------------
+INSTALAR O APK
+-------------------------------------------------
+CELULAR / TABLET:
+  Copie o app-debug.apk (WhatsApp, e-mail, cabo ou pendrive), toque nele e permita
+  "instalar apps desconhecidos" quando o Android pedir.
+
+TV BOX / ANDROID TV (por pendrive):
+  1. Copie o APK para um pendrive e conecte na TV Box.
+  2. Instale um gerenciador de arquivos (ex.: "File Commander" ou "X-plore") pela
+     loja da TV, abra o pendrive e selecione o APK para instalar.
+  3. Se pedir, ative "Fontes desconhecidas" nas configuracoes de seguranca.
+  Alternativa: pelo PC, com a TV na mesma rede e a depuracao USB/ADB ligada:
+     adb connect IP-DA-TV:5555      e depois      adb install app-debug.apk
+  O app aparece na tela inicial da Android TV com o banner CarburaFlix.
+
+-------------------------------------------------
+COMO USAR
+-------------------------------------------------
+1. Abra o app e va em "Listas".
+2. Aba "Usuario e senha": servidor (ex.: http://servidor.com:8080), usuario e senha.
+   Aba "URL / arquivo": cole o link M3U, escolha um arquivo .m3u do aparelho ou
+   cole o conteudo.
+3. Escolha o grupo na tela inicial (Canais abertos, Filmes, Series, Shows, Esportes,
+   Variedades). Toque no canal para ver a previa; toque de novo (ou 2 toques no
+   video) para tela cheia, que gira para o modo paisagem sozinha.
+4. Botao Voltar do Android: sai da tela cheia, fecha o player, volta ao inicio.
+
+TV BOX / ANDROID TV (controle remoto): setas navegam, OK seleciona, OK de novo no
+canal que esta tocando abre a tela cheia, Voltar volta. Teclas de midia
+(play/pause, avancar, voltar, canal +/-) funcionam no player.
+
+-------------------------------------------------
+OBSERVACOES
+-------------------------------------------------
+- O app precisa de internet (a lista e os canais vem da internet; as bibliotecas de
+  video e a fonte sao carregadas de CDNs na primeira abertura).
+- E um APK de teste/uso pessoal (assinado com a chave de depuracao). Nao serve para
+  publicar na Play Store; para isso seria preciso assinar com chave propria.
+- Troque o app do aparelho pelo mesmo APK novo quando houver atualizacao (as listas
+  salvas sao mantidas).
+- Nome do pacote: com.carburaflix.iptvpro
